@@ -26,8 +26,8 @@ def load_data():
     # print(row_count, type(row_count))
 
     # Define BigQuery query
-    query = f"SELECT * FROM `{project}.{dataset}.{table}` ORDER BY PNR DESC LIMIT 5000 OFFSET {sqlite_row_count+1};"
-    # query = f"SELECT * FROM `{project}.{dataset}.{table}` ORDER BY PNR DESC;"
+    # query = f"SELECT * FROM `{project}.{dataset}.{table}` ORDER BY PNR DESC LIMIT 5000 OFFSET {sqlite_row_count+1};"
+    query = f"SELECT * FROM `{project}.{dataset}.{table}` ORDER BY PNR DESC;"
 
     # Execute BigQuery query and fetch data
     df = execute_bigquery_query(bq_client, query)
@@ -43,14 +43,13 @@ def load_data():
     # print("SQLite row count = ", sqlite_row_count)
     # print("BIGQ row count = ", bigq_row_count)
 
-load_data()
 
-from apscheduler.schedulers.blocking import BlockingScheduler
+# from apscheduler.schedulers.blocking import BlockingScheduler
 
-scheduler = BlockingScheduler()
-scheduler.add_job(load_data, 'interval', minutes=1)
-scheduler.start()
-scheduler.end()
+# scheduler = BlockingScheduler()
+# scheduler.add_job(load_data, 'interval', minutes=1)
+# scheduler.start()
+# scheduler.end()
 
 
 

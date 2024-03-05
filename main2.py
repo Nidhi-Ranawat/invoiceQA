@@ -19,12 +19,14 @@ from typing import List
 from langchain.callbacks.base import BaseCallbackHandler
 from langchain.agents import create_sql_agent
 
+from importBigQueryToSqlite import load_data
 # Set environment variable for OpenAI API key
 
 load_dotenv()
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 
 def main():
+    load_data()
     db = SQLDatabase.from_uri('sqlite:///invoicedb.sqlite')
 
     st.set_page_config(page_title="Ask your Invoice Database")
