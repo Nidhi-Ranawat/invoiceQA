@@ -26,7 +26,7 @@ load_dotenv()
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 
 def main():
-    # load_data()
+    load_data()
     db = SQLDatabase.from_uri('sqlite:///invoicedb.sqlite')
 
     st.set_page_config(page_title="Ask your Invoice Database")
