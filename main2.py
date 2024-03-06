@@ -26,7 +26,7 @@ load_dotenv()
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 
 def main():
-    load_data()
+    # load_data()
     db = SQLDatabase.from_uri('sqlite:///invoicedb.sqlite')
 
     st.set_page_config(page_title="Ask your Invoice Database")
@@ -41,7 +41,7 @@ def main():
     Observation: the result of the action
     ... (this Thought/Action/Action Input/Observation can repeat N times)
     Thought: I now know the final answer
-    Final Answer: Create an apt SQL query for a given human language query. Return the SQL query only for 25 records max include following columns only Customer, `Passenger Name`, PNR, `Ticket No`, `Base Fare`, `Total Inv`, Agent, `Amt In INR`
+    Final Answer: Return only an apt SQL query for a given human language query. Return the SQL query only for 25 records max include following columns only Customer, `Passenger Name`, PNR, `Ticket No`, `Base Fare`, `Total Inv`, Agent, `Amt In INR`
     it must meet the particular condition specified (if any)
     """
 
