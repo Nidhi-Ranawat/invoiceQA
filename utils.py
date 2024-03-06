@@ -77,7 +77,7 @@ def extract_info(query):
     # x = pd.read_sql_query('SELECT Customer, `Passenger Name`, PNR, `Ticket No`, `Base Fare`, `Total Inv`, Agent, `Amt In INR` FROM invoices LIMIT 1000', conn, parse_dates=["E"])
 
     template ="""
-    Compose a more suitable SQLite query for {query} with consideration for column references from {cols}.
+    Compose a more suitable SQLite query for {query} with consideration for column references from {cols} and use wildcards.
     Ensure the query is case insensitive.
     The query should be designed for the 'invoices' table and utilize backticks when selecting columns in the final query.
     """
