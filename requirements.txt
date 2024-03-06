@@ -92,7 +92,8 @@ spacy==3.6.1
 spacy-legacy==3.0.12
 spacy-loggers==1.0.4
 SpeechRecognition==3.10.0
-SQLAlchemy==2.0.25
+# SQLAlchemy==2.0.25
+SQLAlchemy
 sqlparse==0.4.4
 srsly==2.4.7
 stack-data==0.6.2
