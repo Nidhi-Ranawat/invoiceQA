@@ -52,7 +52,8 @@ def save_to_sqlite(df, db_file):
     # Creating a SQLite database connection
     conn = sqlite3.connect(db_file)
     # Save DataFrame to SQLite database
-    df.to_sql('invoices', conn, if_exists='append', index=False)
+    # df.to_sql('invoices', conn, if_exists='append', index=False)
+    df.to_sql('invoices', conn, if_exists='replace', index=False)
     conn.close()
 
 def get_row_count():
@@ -77,7 +78,7 @@ def extract_info(query):
     # x = pd.read_sql_query('SELECT Customer, `Passenger Name`, PNR, `Ticket No`, `Base Fare`, `Total Inv`, Agent, `Amt In INR` FROM invoices LIMIT 1000', conn, parse_dates=["E"])
 
     template ="""
-    Compose a more suitable SQLite query for {query} with consideration for column references from {cols} and use wildcards.
+    Compose a more suitable SQLite query for {query} with consideration for column references from {cols} and use wildcards if where condition.
     Ensure the query is case insensitive.
     The query should be designed for the 'invoices' table and utilize backticks when selecting columns in the final query.
     """
