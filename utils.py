@@ -24,7 +24,6 @@ def execute_bigquery_query(client, query):
     # Executing the query and converting the result to a DataFrame
     return client.query(query).to_dataframe()
 
-@st.cache
 def clean_data(df):
     # Cleaning PNR numbers for unexpected values
     # df['PNR'] = df['PNR'].apply(clean_invalid_chars)

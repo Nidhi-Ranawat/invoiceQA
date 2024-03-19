@@ -10,7 +10,6 @@ from langchain_openai import ChatOpenAI
 import streamlit as st
 import os
 
-@st.cache
 def load_data():
     root = os.getcwd()
     # Defining service account file path
