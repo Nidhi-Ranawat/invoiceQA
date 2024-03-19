@@ -26,8 +26,8 @@ def load_data():
     # print(row_count, type(row_count))
 
     # Define BigQuery query
-    # query = f"SELECT * FROM `{project}.{dataset}.{table}` ORDER BY PNR DESC LIMIT 5000 OFFSET {sqlite_row_count+1};"
-    query = f"SELECT * FROM `{project}.{dataset}.{table}` ORDER BY PNR DESC;"
+    query = f"SELECT * FROM `{project}.{dataset}.{table}` ORDER BY PNR DESC LIMIT 5000 OFFSET {sqlite_row_count+1};"
+    # query = f"SELECT * FROM `{project}.{dataset}.{table}` ORDER BY PNR DESC;"
 
     # Execute BigQuery query and fetch data
     df = execute_bigquery_query(bq_client, query)
