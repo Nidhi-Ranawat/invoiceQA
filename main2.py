@@ -49,20 +49,32 @@ def main():
     # agent_executor = create_sql_agent(llm, db=db, verbose=True,handle_parsing_errors=True)
     toolkit = SQLDatabaseToolkit(db=db,llm=llm)
     agent_executor = create_sql_agent(llm=llm,toolkit=toolkit,format_instructions=FORMAT_INSTRUCTIONS, verbose=True,agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION)
+    agent_executor2 = create_sql_agent(llm=llm,toolkit=toolkit,verbose=True,agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION)
 
     user_question = st.text_input("Ask a question about your BigQuery: ")
     
-    data = "Not a list"
+    data = "Sorry! Info not found"
     if user_question is not None and user_question != "":
         if "list" in user_question.lower():
             with st.spinner(text="In progress..."):
-                query = agent_executor.run(
-                    user_question
-                    )
-                data = extract_info(query)
-                st.write(data)
+                try:
+                    query = agent_executor.run(
+                        user_question
+                        )
+                    data = extract_info(query)
+                    st.write(data)
+                except:
+                    st.write(data)
         else:
-            st.write(data)
+            with st.spinner(text="In progress..."):
+                try:
+                    data = agent_executor2.run(
+                        user_question
+                        )
+                    # print(data)
+                    st.write(data)
+                except:
+                    st.write(data)
                 
     st.write(" ")
     st.write("For eg : show me one random PNR number")
