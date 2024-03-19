@@ -12,6 +12,7 @@ from langchain_experimental.sql import SQLDatabaseChain
 from langchain_community.utilities import SQLDatabase
 from langchain import OpenAI
 from langchain.prompts import PromptTemplate
+import streamlit as st
 
 def connect_to_bigquery(credentials_file):
     # Getting credentials from service account file
@@ -23,6 +24,7 @@ def execute_bigquery_query(client, query):
     # Executing the query and converting the result to a DataFrame
     return client.query(query).to_dataframe()
 
+@st.cache
 def clean_data(df):
     # Cleaning PNR numbers for unexpected values
     # df['PNR'] = df['PNR'].apply(clean_invalid_chars)
