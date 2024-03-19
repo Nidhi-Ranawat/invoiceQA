@@ -52,8 +52,8 @@ def save_to_sqlite(df, db_file):
     # Creating a SQLite database connection
     conn = sqlite3.connect(db_file)
     # Save DataFrame to SQLite database
-    df.to_sql('invoices', conn, if_exists='append', index=False)
-    # df.to_sql('invoices', conn, if_exists='replace', index=False)
+    # df.to_sql('invoices', conn, if_exists='append', index=False)
+    df.to_sql('invoices', conn, if_exists='replace', index=False)
     conn.close()
 
 def get_row_count():
