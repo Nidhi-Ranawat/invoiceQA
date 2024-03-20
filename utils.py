@@ -24,6 +24,7 @@ def execute_bigquery_query(client, query):
     # Executing the query and converting the result to a DataFrame
     return client.query(query).to_dataframe()
 
+@st.cache_data
 def clean_data(df):
     # Cleaning PNR numbers for unexpected values
     # df['PNR'] = df['PNR'].apply(clean_invalid_chars)
@@ -49,6 +50,7 @@ def clean_data(df):
     
     return df
 
+@st.cache_data
 def save_to_sqlite(df, db_file):
     # Creating a SQLite database connection
     conn = sqlite3.connect(db_file)

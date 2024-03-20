@@ -26,11 +26,10 @@ load_dotenv()
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 
 def main():
-    load_data()
-    db = SQLDatabase.from_uri('sqlite:///invoicedb.sqlite')
-
     st.set_page_config(page_title="Ask your Invoice Database")
     st.header("Ask your Invoice database 📈")
+    load_data()
+    db = SQLDatabase.from_uri('sqlite:///invoicedb.sqlite')
 
     FORMAT_INSTRUCTIONS = """
     Use the following format:
