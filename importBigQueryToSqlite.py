@@ -22,7 +22,7 @@ def load_data():
     project = "data-23-24"
     dataset = "invoice_dataset"
     table = "bu18dec"
-    sqlite_row_count = get_row_count()
+    # sqlite_row_count = get_row_count()
     # print(row_count, type(row_count))
 
     # Define BigQuery query

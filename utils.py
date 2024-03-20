@@ -14,15 +14,19 @@ from langchain import OpenAI
 from langchain.prompts import PromptTemplate
 import streamlit as st
 
+@st.cache_resource
 def connect_to_bigquery(credentials_file):
     # Getting credentials from service account file
     credentials = service_account.Credentials.from_service_account_file(credentials_file)
     # Creating BigQuery client with credentials (connection)
     return bigquery.Client(credentials=credentials, project=credentials.project_id)
 
-def execute_bigquery_query(client, query):
+@st.cache_resource
+def execute_bigquery_query(_client, query):
     # Executing the query and converting the result to a DataFrame
-    return client.query(query).to_dataframe()
+    # return client.query(query).to_dataframe()
+    df = _client.query(query).to_dataframe()
+    return df
 
 @st.cache_data
 def clean_data(df):
@@ -59,16 +63,16 @@ def save_to_sqlite(df, db_file):
     df.to_sql('invoices', conn, if_exists='replace', index=False)
     conn.close()
 
-def get_row_count():
-    conn = sqlite3.connect('invoicedb.sqlite')
-    cursor = conn.cursor()
-    try:
-        cursor.execute('SELECT COUNT(*) FROM invoices')
-    except:
-        return 0
-    count = cursor.fetchone()[0]
-    conn.close()
-    return count
+# def get_row_count():
+#     conn = sqlite3.connect('invoicedb.sqlite')
+#     cursor = conn.cursor()
+#     try:
+#         cursor.execute('SELECT COUNT(*) FROM invoices')
+#     except:
+#         return 0
+#     count = cursor.fetchone()[0]
+#     conn.close()
+#     return count
 
 def extract_info(query):
     print("extracting")
